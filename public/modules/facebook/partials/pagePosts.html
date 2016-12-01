@@ -1,0 +1,32 @@
+<section id="main">
+	<a href="fbFriendsMain#/search"><- Back to search results list</a>
+	<div class="main-content">
+		<table class="resultPosts-table">
+			<thead>
+				<tr>
+					<th colspan="5">Page Posts</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Index</td>
+					<td>ID</td>
+					<td>Message</td>
+					<td>Story</td>
+					<td>Comments</td>
+				</tr>
+				<tr ng-repeat="post in posts">
+					<td>{{$index + 1}}</td>
+					<td>{{post.id}}</td>
+					<td>{{post.message}}</td>
+					<td>{{post.story}}</td>
+					<td>
+						<div ng-repeat="comment in post.comments.data">
+							<div>{{comment.from.name}} : {{comment.message}}</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>

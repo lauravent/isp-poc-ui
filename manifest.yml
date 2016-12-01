@@ -1,0 +1,12 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: eu-gb.mybluemix.net
+  name: isp-poc-ui
+  host: isp-poc-ui
+  disk_quota: 1024M
+env:
+  USER_MICROSERVICE_URL: isp-poc-users.eu-gb.mybluemix.net
+  PAYMENT_MICROSERVICE_URL: isp-poc-payments-ws.eu-gb.mybluemix.net
+  AUTHENTICATION: facebook

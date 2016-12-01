@@ -1,0 +1,64 @@
+<!doctype html>
+<html >
+      <head>		 
+	  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css" />
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.js"></script>
+	   <script src="js/app.js"></script>
+
+      </head>
+		<body  ng-app="myIspApp" class="container">
+ 
+<div ng-controller="SessionController as sc" class="jumbotron main-content">
+	<div class="progress">
+        <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{sc.session.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{sc.session.progress}}%"><span class="sr-only">{{sc.session.progress}}% Complete</span></div>
+      </div>
+    <div  ng-show="sc.session.loggedIn && !sc.session.account">
+        <h1><small>Welcome </small>{{sc.session.loggedIn.name}}</h1>
+		<h2>Please select your payment method</h2>
+		
+		<div class="list-group" ng-controller="PreferencesController as pc"><a href ng-repeat="account in sc.session.accounts" ng-click="pc.setAccount(account.id)">
+			<li class="list-group-item">
+			<h4>{{account.method}}</h4>
+			<em>{{account.coordinates}}</em>
+			</li></a>
+		</div> 
+		
+    </div>
+	<div ng-show="sc.session.loggedIn && sc.session.account && !sc.session.friend">
+        <h1><small>You selected </small>{{sc.session.account.method}}</h1>
+		<h2>Please select a Friend:<small> <input ng-model="query" placeholder="search" ><small></h2>
+		
+		<div class="list-group" ng-controller="FriendsController as ac">
+		<div>
+		
+		</div>
+		<a href ng-repeat="friend in ac.friends | filter:query" ng-click="ac.setFriend(friend.id)">
+			<li class="list-group-item">
+			<h4>{{friend.name}}</h4>
+			</li></a>
+		</div> 
+    </div>
+	<div ng-controller="PaymentController as pc"  ng-show="sc.session.loggedIn && sc.session.account && sc.session.friend && !sc.session.amount">
+        <h1>{{sc.session.loggedIn.name}}<small>, you selected to send money to </small>{{sc.session.friend.name}}<small> using </small>{{sc.session.account.method}} <i>{{sc.session.account.userID}}</i></h1>
+		<h2 class="currencyinput"> Please select how much you want to transfer:
+			<br/> 
+			<small>
+				<input type="number" ng-model="pc.amount"></input>
+				<a href class="btn btn-primary intesa-btn" ng-click="pc.pay()" >Transfer Money</a>
+			</small>
+		</h2>
+		
+    
+	</div>
+	<div ng-show="sc.session.loggedIn && sc.session.account && sc.session.friend && sc.session.amount">
+	    <h1>{{sc.session.amount | currency:"&euro; "}} <small>sent to </small> {{sc.session.friend.name}}</h1>
+	</div>
+</div>
+      </body>
+</html>
+

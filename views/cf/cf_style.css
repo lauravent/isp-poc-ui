@@ -1,0 +1,46 @@
+/*
+*  @author Carlo Ferrarini
+*/
+
+.main-content{
+/*	background: #93C7AE;*/
+	text-align: center;
+	margin-top: 20%;
+	background: #028352;
+	font-family: cursive, arial, helvetica;
+	color: white;
+}
+.container {
+	background: linear-gradient(to bottom, #e3e3e3 0%,#edeeee 100%);
+}
+
+.jumbotron h1 {
+	font-size: 50px;
+}
+
+h1 small {
+	color: #DDD;
+}
+
+
+
+.intesa-btn {
+	background: #f6932b;
+	font-weight: bold;
+	border-color: #f6932b;
+	
+}
+
+
+.currencyinput {
+
+}
+
+input {
+	color: black;
+}
+
+li:hover{
+	background: #f6932b;
+	color: white;
+}

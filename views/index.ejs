@@ -1,0 +1,42 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+	  <meta charset="utf-8" /> 
+<head>
+	<title>Facebook Authentication</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="/stylesheets/cf_style.css" />
+<!--	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> --><!-- load bootstrap css --> 
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+<!--	<style>
+		body 		{ padding-top:80px; }
+	</style>
+	
+	-->
+</head>
+<body>
+<div class="container" >
+	 <div class="page-header">
+		<p>
+			<!-- img src="/images/intesa_sanpaolo.png"-->
+		</p>
+		<div class="progress">
+			<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{sc.session.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{sc.session.progress}}%">
+					<span class="sr-only">{{sc.session.progress}}% Complete</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="main-content jumbotron text-center">
+		<h1><span class="fa fa-lock"></span> Facebook Authentication</h1>
+		
+		<p>Login or Register with:</p>
+
+		<a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+		<a href="/signup" class="btn btn-primary intesa-btn"><span class="fa"></span> Signup</a>
+		<!-- <a href="/connect" class="btn btn-primary"><span class="fa"></span> Connect</a> -->
+	</div>
+</div>
+</body>
+</html>

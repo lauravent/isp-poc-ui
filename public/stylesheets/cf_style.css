@@ -1,0 +1,74 @@
+/*
+*  @author Carlo Ferrarini
+*/
+
+html {
+	height: 100%;
+	
+}
+
+body {
+	height: 100%;
+	background: linear-gradient(to bottom, #e3e3e3 0%,#edeeee 100%);
+	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.main-content{
+/*	
+background: linear-gradient(to bottom, #ffffff 0%,#f1f1f1 100%); 
+*/
+}
+.container {
+	background-image: url('/images/pattern_disturbo.png');
+	height: 100%;
+}
+.jumbotron {
+	box-shadow:0px 1px 1px rgba(0,0,0,.3),inset 0px 1px 0.6px rgba(255,255,255,.5),0px 150px 100px rgba(255, 255, 255,.5) inset,0px 1px 1px rgba(0,0,0,.3), 0 -60px 40px rgba(0, 0, 0, 0.06) inset;
+}
+
+
+h4 {
+	color: #007B44;
+	font-weight: bold;
+}
+.defined{
+/*	color: #f6932b; */
+	color: black;
+	font-weight: normal;
+}
+.result-status{
+	color: #f6932b;
+}
+.intesa-btn {
+	background: #f6932b;
+	font-weight: bold;
+	border-color: #f6932b;
+	
+}
+
+
+.currencyinput {
+
+}
+
+input {
+	color: black;
+}
+
+a{
+	color: white;
+}
+/*
+.list-group-item {
+	border-color: #BBB;
+	background-color:#BBB;
+	border-image: none;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	box-shadow: 0px 1px 0.3px rgba(0, 0, 0, 0.3) inset;
+}
+*/
+li:hover{
+	background: #f6932b;
+	color: white;
+}

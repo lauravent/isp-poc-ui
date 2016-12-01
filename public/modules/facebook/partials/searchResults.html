@@ -1,0 +1,33 @@
+<div class="col-sm-6">
+	<input type="text" ng-model="searchPage" placeholder="Search..." ng-change="search()"/>
+	<input type="text" ng-model="nameFilter" placeholder="Filter..." />
+	<table>
+		<thead>
+			<tr>
+				<th colspan="4">Facebook search results</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Index</td>
+				<td>Picture</td>
+				<td>ID</td>
+				<td>Name</td>
+				<td>Category</td>
+				<td>About</td>
+				<td>Likes</td>
+			</tr>
+			<tr ng-repeat="result in searchResults | filter: searchFilter">
+				<td>{{$index + 1}}</td>
+				<td><img src="{{result.picture.data.url}}" /></td>
+				<td><a href="#/page/{{result.id}}">{{result.id}}</a></td>
+				<td>{{result.name}}</td>
+				<td>{{result.category}}</td>
+				<td>{{result.about}}</td>
+				<td>{{result.likes}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<button ng-click="next()" style="float: right; text-align: right;">next</button>
+	<button ng-click="previous()" style="float: left; text-align: left;">previous</button>
+</div>

@@ -1,0 +1,27 @@
+<div class="col-sm-6">
+	<input type="text" ng-model="searchPage" placeholder="Search..." ng-change="friendSearch()"/>
+	<input type="text" ng-model="nameFilter" placeholder="Filter..." />
+	<table>
+		<thead>
+			<tr>
+				<th colspan="4">Facebook friends results</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Index</td>
+				<td>  First Name</td>
+				<td>  Last Name</td>
+				<td>  ID</td>
+			</tr>
+			<tr ng-repeat="result in searchResults | filter: searchFilter">
+				<td>{{$index + 1}}</td>
+				<td>{{result.first_name}}</td>
+				<td>{{result.last_name}}</td>
+				<td><a href="#/page/{{result.id}}">{{result.id}}</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<button ng-click="next()" style="float: right; text-align: right;">next</button>
+	<button ng-click="previous()" style="float: left; text-align: left;">previous</button>
+</div>

@@ -1,0 +1,107 @@
+#!/bin/bash
+ARGS=$1
+SCRIPT="run"
+VERSION=1
+DOCKER_IMAGE_NAME="isp-poc-ui"
+DOCKER_CONTAINER_NAME="isp-poc-ui-app"
+DOCKER_IMAGE_TAG=$VERSION
+DOCKER_REGISTRY=registry.ng.bluemix.net/rpozzi
+
+########################
+## printHelp
+########################
+printHelp()
+{
+  	echo "Usage: $SCRIPT [OPTIONS] "
+  	echo "		$SCRIPT [ --help | -v | --version ]"
+
+	echo "Options:"
+	echo "-b              	Build custom docker image for NodeJs environment"
+	echo "-r [IMAGE_VERSION]	Run $DOCKER_CONTAINER_NAME application"
+	echo "-p [IMAGE_VERSION]	Pull $DOCKER_IMAGE_NAME from Bluemix Docker registry"
+}
+########################
+## printVersion
+########################
+printVersion()
+{
+  	echo "$VERSION"
+}
+########################
+## buildDockerImage
+########################
+buildDockerImage()
+{
+	CMD="docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG ."
+	echo "Building Docker image from Dockerfile ..."
+	echo "Issuing command : " $CMD
+	$CMD
+}
+########################
+## pullDockerImage
+########################
+pullDockerImage()
+{
+	CMD="docker pull $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
+	echo "Pulling Docker image " $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG " from Bluemix registry ..."
+  	echo "Issuing command : " $CMD
+	$CMD
+}
+########################
+## runApp
+########################
+runApp()
+{
+	CMD="docker run -it --name $DOCKER_CONTAINER_NAME -p 3002:8082 $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG /bin/sh"
+	echo "Running UI microservice on Docker image " $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG " ..."
+	echo "Issuing command : " $CMD
+	$CMD
+}
+
+if [ -z $ARGS ]; then 
+	printHelp
+else
+	case $ARGS in
+		-b)
+		  RUN_FUNCTION=buildDockerImage
+		  RUNAPP_ARGS=$2
+		  if [ -z $RUNAPP_ARGS ]; then 
+			RUN_FUNCTION=printHelp
+		  else
+			DOCKER_IMAGE_TAG=$RUNAPP_ARGS
+		  fi
+		  ;;
+		-r)
+		  RUN_FUNCTION=runApp
+		  RUNAPP_ARGS=$2
+		  if [ -z $RUNAPP_ARGS ]; then 
+			RUN_FUNCTION=printHelp
+		  else
+			DOCKER_IMAGE_TAG=$RUNAPP_ARGS
+		  fi
+		  ;;
+		-p)
+		  RUN_FUNCTION=pullDockerImage
+		  RUNAPP_ARGS=$2
+		  if [ -z $RUNAPP_ARGS ]; then 
+			RUN_FUNCTION=printHelp
+		  else
+			DOCKER_IMAGE_TAG=$RUNAPP_ARGS
+		  fi
+		  ;;
+		--help)
+		  RUN_FUNCTION=printHelp
+		  ;;
+		-v)
+		  RUN_FUNCTION=printVersion
+		  ;;
+		--version)
+		  RUN_FUNCTION=printVersion
+		  ;;
+		*)
+		  echo "looks like to be running with invalid args..."
+		  printHelp
+		  ;;
+	esac
+	$RUN_FUNCTION
+fi
